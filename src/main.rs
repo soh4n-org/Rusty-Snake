@@ -51,6 +51,27 @@ fn draw_point(p: Point, symbol: &str) -> Result<()> {
     Ok(())
 }
 
+fn next_head(head: Point, dir: &Direction) -> Point {
+    match dir {
+        Direction::Up => Point {
+            x: head.x,
+            y: head.y - 1,
+        },
+        Direction::Down => Point {
+            x: head.x,
+            y: head.y + 1,
+        },
+        Direction::Left => Point {
+            x: head.x - 1,
+            y: head.y,
+        },
+        Direction::Right => Point {
+            x: head.x + 1,
+            y: head.y,
+        },
+    }
+}
+
 fn main() -> Result<()> {
     let mut stdout = std::io::stdout();
 
@@ -98,25 +119,3 @@ fn main() -> Result<()> {
     execute!(stdout, cursor::Show)?;
     Ok(())
 }
-
-fn next_head(head: Point, dir: &Direction) -> Point {
-    match dir {
-        Direction::Up => Point {
-            x: head.x,
-            y: head.y - 1,
-        },
-        Direction::Down => Point {
-            x: head.x,
-            y: head.y + 1,
-        },
-        Direction::Left => Point {
-            x: head.x - 1,
-            y: head.y,
-        },
-        Direction::Right => Point {
-            x: head.x + 1,
-            y: head.y,
-        },
-    }
-}
-
